@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 #nullable disable
 
@@ -27,12 +28,18 @@ namespace ASPNETCoreHW1.Models
         [Column("DepartmentID")]
         public int DepartmentId { get; set; }
 
+        public bool? IsDeleted { get; set; }
+        public DateTime? DateModified { get; set; }
+
         [ForeignKey(nameof(DepartmentId))]
         [InverseProperty("Course")]
+        [JsonIgnore]
         public virtual Department Department { get; set; }
         [InverseProperty("Course")]
+        [JsonIgnore]
         public virtual ICollection<CourseInstructor> CourseInstructor { get; set; }
         [InverseProperty("Course")]
+        [JsonIgnore]
         public virtual ICollection<Enrollment> Enrollment { get; set; }
     }
 }

@@ -34,6 +34,8 @@ namespace ASPNETCoreHW1.Models
         [Required]
         [StringLength(128)]
         public string Discriminator { get; set; }
+        public bool? IsDeleted { get; set; }
+        public DateTime? DateModified { get; set; }
 
         [InverseProperty("Instructor")]
         public virtual OfficeAssignment OfficeAssignment { get; set; }
